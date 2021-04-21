@@ -18,6 +18,16 @@ public class ScreenUtility {
 
         float density = activity.getResources().getDisplayMetrics().density;
 
+        dpHeight = outMetrics.heightPixels/density;
+        dpWidth = outMetrics.widthPixels/density;
 
+    }
+
+    public float getDpWidth() {
+        return dpWidth;
+    }
+
+    public float getDpHeight() {
+        return dpHeight;
     }
 }
