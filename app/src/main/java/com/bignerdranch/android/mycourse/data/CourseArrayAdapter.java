@@ -6,6 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -27,8 +29,18 @@ public class CourseArrayAdapter extends ArrayAdapter<Course> {
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+        Course course = courses.get(position);
+
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
+
         View view = inflater.inflate(R.layout.course_listitem, null);
+
+        ImageView imageView = view.findViewById(R.id.course_image_id);
+        imageView.setImageResource(course.getImageResourceId(context));
+
+        TextView textView = view.findViewById(R.id.course_name);
+        textView.setText(course.getCourseName());
+
         return view;
     }
 }
