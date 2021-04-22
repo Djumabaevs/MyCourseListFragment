@@ -6,7 +6,9 @@ import androidx.fragment.app.FragmentManager;
 
 import android.os.Bundle;
 
-public class MainActivity extends AppCompatActivity {
+import com.bignerdranch.android.mycourse.data.Course;
+
+public class MainActivity extends AppCompatActivity implements CourseListFragment.Callbacks {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +24,11 @@ public class MainActivity extends AppCompatActivity {
                     .add(R.id.my_container, fragment)
                     .commit();
         }*/
+
+    }
+
+    @Override
+    public void onItemSelected(Course course) {
 
     }
 }

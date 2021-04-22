@@ -1,10 +1,13 @@
 package com.bignerdranch.android.mycourse;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -42,5 +45,15 @@ public class CourseListFragment extends ListFragment {
 
     public interface Callbacks {
         void onItemSelected(Course course);
+    }
+
+    @Override
+    public void onListItemClick(@NonNull ListView l, @NonNull View v, int position, long id) {
+        super.onListItemClick(l, v, position, id);
+        Course course = courses.get(position);
+
+ //       startActivity(new Intent(this, CourseDetailActivity.class));  cannot start activity using intent inside a fragment
+
+//        Toast.makeText(getActivity(), "Name: " + course.getCourseName(), Toast.LENGTH_LONG).show();
     }
 }
