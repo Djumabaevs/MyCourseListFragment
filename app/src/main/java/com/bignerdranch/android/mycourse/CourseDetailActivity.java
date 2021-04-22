@@ -6,7 +6,11 @@ import androidx.fragment.app.FragmentManager;
 import android.os.Bundle;
 import android.widget.Toast;
 
+import com.bignerdranch.android.mycourse.data.Course;
+import com.bignerdranch.android.mycourse.data.CourseData;
+
 public class CourseDetailActivity extends AppCompatActivity {
+    Course course;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,7 +21,8 @@ public class CourseDetailActivity extends AppCompatActivity {
 
             Bundle extra = getIntent().getExtras();
             int position = extra.getInt("course_id");
-            Toast.makeText(getApplicationContext(), "Position: " + position, Toast.LENGTH_LONG).show();
+            course = new CourseData().courseList().get(position);
+            Toast.makeText(getApplicationContext(), "Course name: " + course.getCourseName(), Toast.LENGTH_LONG).show();
 
             CourseDetailFragment fragment = new CourseDetailFragment();
             FragmentManager fragmentManager = getSupportFragmentManager();
