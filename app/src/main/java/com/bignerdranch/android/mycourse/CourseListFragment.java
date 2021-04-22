@@ -39,4 +39,8 @@ public class CourseListFragment extends ListFragment {
         View view = inflater.inflate(R.layout.course_list_fragment, container, false);
         return view;
     }
+
+    public interface Callbacks {
+        void onItemSelected(Course course);
+    }
 }
