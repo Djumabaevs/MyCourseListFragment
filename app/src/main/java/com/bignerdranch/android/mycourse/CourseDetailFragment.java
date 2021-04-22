@@ -12,6 +12,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.bignerdranch.android.mycourse.data.Course;
+import com.bignerdranch.android.mycourse.data.CourseData;
 
 public class CourseDetailFragment extends Fragment {
 
@@ -19,6 +20,16 @@ public class CourseDetailFragment extends Fragment {
 
     //required no-args constructor
     public CourseDetailFragment() {}
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        Bundle bundle = getArguments();
+        if(bundle != null & bundle.containsKey("course_id")) {
+            int position = bundle.getInt("course_id");
+            course = new CourseData().courseList().get(position);
+        }
+    }
 
     @Nullable
     @Override
