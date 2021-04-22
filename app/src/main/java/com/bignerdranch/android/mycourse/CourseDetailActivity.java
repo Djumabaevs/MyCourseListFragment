@@ -1,6 +1,7 @@
 package com.bignerdranch.android.mycourse;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
 
 import android.os.Bundle;
 
@@ -13,6 +14,10 @@ public class CourseDetailActivity extends AppCompatActivity {
 
         if(savedInstanceState == null) {
             CourseDetailFragment fragment = new CourseDetailFragment();
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            fragmentManager.beginTransaction()
+                    .add(R.id.detail_container, fragment)
+                    .commit();
 
         }
     }
