@@ -11,30 +11,37 @@ import android.widget.Toast;
 import com.bignerdranch.android.mycourse.data.Course;
 
 public class MainActivity extends AppCompatActivity implements CourseListFragment.Callbacks {
+    private boolean isTwoPane = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-       /* FragmentManager fragmentManager = getSupportFragmentManager();
-        Fragment fragment = fragmentManager.findFragmentById(R.id.my_container);
-
-        if(fragment == null) {
-            fragment = new CourseListFragment();
-            fragmentManager.beginTransaction()
-                    .add(R.id.my_container, fragment)
-                    .commit();
-        }*/
-
+        if (findViewById(R.id.detail_container) != null) {
+            isTwoPane = true;
+        }
     }
 
     @Override
     public void onItemSelected(Course course, int position) {
         Toast.makeText(this, "Hello", Toast.LENGTH_LONG).show();
 
-        Intent intent = new Intent(MainActivity.this, CourseDetailActivity.class);
-        intent.putExtra("course_id", position);
-        startActivity(intent);
+        if (isTwoPane) {
+            Bundle bundle = new Bundle();
+            bundle.putInt("course_id", position);
+
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            CourseDetailFragment courseDetailFragment = new CourseDetailFragment();
+            courseDetailFragment.setArguments(bundle);
+
+            fragmentManager.beginTransaction()
+                    .replace(R.id.detail_container, courseDetailFragment)
+                    .commit();
+        } else {
+            Intent intent = new Intent(MainActivity.this, CourseDetailActivity.class);
+            intent.putExtra("course_id", position);
+            startActivity(intent);
+        }
     }
 }
