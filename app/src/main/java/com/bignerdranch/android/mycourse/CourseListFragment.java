@@ -1,5 +1,6 @@
 package com.bignerdranch.android.mycourse;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -22,6 +23,7 @@ import java.util.List;
 
 public class CourseListFragment extends ListFragment {
     List<Course> courses = new CourseData().courseList();
+    private Callbacks activity;
 
     public CourseListFragment() {}
 
@@ -51,9 +53,17 @@ public class CourseListFragment extends ListFragment {
     public void onListItemClick(@NonNull ListView l, @NonNull View v, int position, long id) {
         super.onListItemClick(l, v, position, id);
         Course course = courses.get(position);
+        this.activity.onItemSelected(course);
+
 
  //       startActivity(new Intent(this, CourseDetailActivity.class));  cannot start activity using intent inside a fragment
 
 //        Toast.makeText(getActivity(), "Name: " + course.getCourseName(), Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        this.activity = (Callbacks)context;
     }
 }
