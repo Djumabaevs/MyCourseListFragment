@@ -46,14 +46,14 @@ public class CourseListFragment extends ListFragment {
     }
 
     public interface Callbacks {
-        void onItemSelected(Course course);
+        void onItemSelected(Course course, int position);
     }
 
     @Override
     public void onListItemClick(@NonNull ListView l, @NonNull View v, int position, long id) {
         super.onListItemClick(l, v, position, id);
         Course course = courses.get(position);
-        this.activity.onItemSelected(course);
+        this.activity.onItemSelected(course, position);
 
 
  //       startActivity(new Intent(this, CourseDetailActivity.class));  cannot start activity using intent inside a fragment
